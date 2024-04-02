@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokemonyak</title>
+    <style>
+
+        @font-face {
+            font-family: 'Upheaval';
+            src: url('assets/upheavtt.woff2') format('woff2');
+        }
+
+        body {
+            font-family: 'Upheaval', sans-serif;
+            margin: 0;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            height: 100vh;
+            opacity: 1; /* Initial opacity set to 1 */
+            transition: opacity 1s ease;
+        }
+
+        
+        .fadeOut {
+            opacity: 0; /* Set opacity to 0 for the fade-out effect */
+        }
+
+        .backgroundgif {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            z-index: -1;
+            transform: translateX(-50%) translateY(-50%);
+        }
+
+
+        .startButton-container {
+            position: relative;
+        }
+
+        .startButton {
+            background-color: rgb(222, 85, 78);
+            color: rgb(222, 194, 194);
+            padding:10px 140px;
+            
+            
+            font-family: 'Upheaval', sans-serif;
+            font-size: 80px;
+            border: 0px;
+            
+            
+            box-shadow: 
+                 -4px 2px 1px 4px grey,
+                 -4px -7px 1px 4px lightgray,
+                 4px 0px 1px 1px lightgray;
+            margin-bottom: 150px;
+            
+        }
+        .startButton:hover {
+            cursor: pointer;
+            background-color: #d12b06;
+        }
+
+        .startButton:active {
+            
+            box-shadow: 
+                inset -4px 2px 1px 4px grey,
+                inset -4px -7px 1px 4px lightgray,
+                inset 4px 0px 1px 1px lightgray;
+            
+        }
+
+        .startButton::after {
+            content: '';
+            background: black;
+            position: absolute;
+            left: -3%;
+            top: 10px;
+            width: 105%;
+            height: 41%;
+            z-index: -1;
+        }
+
+        .startButton::before {
+            content: '';
+            background: black;
+            position: absolute;
+            left: -1%;
+            top: -20px;
+            width: 104%;
+            height: 50%;
+            z-index: -1;
+        }
+
+        
+
+        .centered-text {
+            position: absolute;
+            color: rgb(4, 2, 15);
+            
+            font-size: 175px;
+            font-family: 'Upheaval', sans-serif;
+            
+            border-radius: 45px;
+            border-color: blue;
+            border-style: double;
+            
+            
+            z-index: 1;
+            top: 35%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    
+    <img class= "backgroundgif" src="assets/ezgif.com-gif-maker.gif" alt="gif">
+    
+    
+    <div class="startButton-container">
+        <button class="startButton" onclick="showNameEntry()">Start</button>
+    </div>
+
+    <div class="centered-text">Pokemonyak<br>Universe</div>
+    
+    <script>
+        function showNameEntry() {
+            document.body.classList.add("fadeOut"); /* Add the fade-out class */
+            setTimeout(function() {
+                window.location.href = "name_entry.html";
+            }, 1000);
+        }
+    </script>
+
+</body>
+</html>

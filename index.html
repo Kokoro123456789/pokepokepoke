@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="/poke/assets/tab-icon-removebg-preview.png" type="image/png">
+  <style>
+    /* Add your existing styles here */
+
+    .error_pop {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      padding: 20px;
+      background-color: #fff;
+      border: 2px solid #000;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      z-index: 999;
+    }
+
+    .error_pop-content {
+      text-align: center;
+      color: red;
+      font-size: 18px;
+    }
+
+    .overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 998;
+    }
+  </style>
+</head>
+<body class="fadeIn">
+  <div class="logo-container">
+    <img class="pokemonLogo" src="/poke/assets/pokemon-logo-removebg-preview.png" alt="Pokemon Logo">
+  </div>
+  <img class="grassBg" src="/poke/assets/bgtoscene1.gif" alt="gif">
+  <div class="input-container">
+    <h1 class="enterName">Enter Your Name:</h1>
+    <input type="text" class="nameInput" placeholder="Your Name" id="userName">
+    <div class="startButton-container">
+      <button class="startButton" onclick="showGreetings()">Start</button>
+    </div>
+  </div>
+
+  <!-- Popup -->
+  <div class="overlay" id="overlay"></div>
+  <div class="error_pop" id="error_pop">
+    <div class="error_pop-content" id="error_pop-content"></div>
+  </div>
+
+  <script>
+    function playClickSound() {
+      var audio = new Audio('/poke/assets/in-sound.mp3');
+      audio.play();
+      return audio; // Return the Audio object for further use
+    }
+
+    function showGreetings() {
+      
+
+      var userName = document.getElementById("userName").value;
+      var error_pop = document.getElementById("error_pop");
+      var overlay = document.getElementById("overlay");
+      var error_pop_content = document.getElementById("error_pop-content");
+
+      if (userName.trim() !== "") {
+        var audio = playClickSound();
+        localStorage.setItem("userName", userName);
+        document.body.classList.add("fadeOut");
+
+        // Delay the page navigation until after the sound has finished playing
+        audio.addEventListener('ended', function() {
+          window.location.href = "slide.html";
+        });
+
+        // Set a timeout as a fallback to ensure navigation in case 'ended' event doesn't fire
+        setTimeout(function() {
+          window.location.href = "slide.html";
+        }, 5000); // Change 5000 to an appropriate duration based on your sound file
+      } else {
+        error_pop_content.textContent = "Please enter your name.";
+        error_pop.style.display = "block";
+        overlay.style.display = "block";
+      }
+    }
+
+    // Close the popup when overlay is clicked
+    document.getElementById("overlay").addEventListener("click", function() {
+      document.getElementById("error_pop").style.display = "none";
+      document.getElementById("overlay").style.display = "none";
+    });
+
+    const startButton = document.querySelector(".startButton");
+
+    startButton.addEventListener("click", (e) => {
+      e.preventDefault();
+      startButton.classList.add("animate");
+
+      setTimeout(() => {
+        startButton.classList.remove("animate");
+      }, 700);
+    });
+  </script>
+</body>
+</html>

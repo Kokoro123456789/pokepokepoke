@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Thank You for Choosing Your Pokemon</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="/poke/assets/tab-icon-removebg-preview.png" type="image/png">
+</head>
+<body>
+  <img class="lastbg" src="/poke/assets/bgtoscene2.gif" alt="">
+  <div class="container-text">
+    <h1 class="greetingText"><span id="chosenPokemon"></span>! Your adventure begins now! Goodluck!</h1>
+  </div>
+  
+  <button class="back-btn" onclick="goBack()">Go back</button>
+  
+  <section>
+    <h2 class="circle-text">Thank-You-Please-Supakarayb-</h2>
+  </section>
+
+  <div class="social-buttons">
+    <a href="https://www.pokemon.com/us/pokedex" target="_blank" class="youtube-btn">Pokedex</a>
+    <a href="https://www.facebook.com/Pokemon" target="_blank" class="facebook-btn">Pokemon FB</a>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      // Retrieve user's name from localStorage
+      var userName = localStorage.getItem("userName");
+      
+      // Update the greeting with the user's name
+      var chosenPokemonElement = document.getElementById("chosenPokemon");
+      if (userName) {
+        chosenPokemonElement.textContent = userName;
+      }
+    });
+    function goBack() {
+      window.history.back();
+    }
+
+    //splitting text into letters
+    const text = document.querySelector('.circle-text');
+    text.innerHTML = text.textContent.replace(/\S/g,"<span>$&</span>");
+
+    const element = document.querySelectorAll('span');
+    for(let i = 0; i < element.length; i++){
+      element[i].style.transform = "rotate("+i*13+"deg)"
+    }
+
+    document.addEventListener("mousemove", function(e)
+    {
+      text.style.left = e.pageX + 'px';
+      text.style.top = e.pageY + 'px';
+    })
+  </script>
+</body>
+</html>

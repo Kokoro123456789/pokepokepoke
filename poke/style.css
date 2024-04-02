@@ -1,0 +1,20 @@
+.login-form {
+  max-width: 700px;
+  margin: 0 auto;
+}
+.video {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  z-index: -1;
+  transform: translateX(-50%) translateY(-50%);
+}
+
+.content {
+  position: relative;
+  z-index: 1;
+}

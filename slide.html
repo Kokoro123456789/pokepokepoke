@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokemonyak</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <link rel="icon" href="/poke/assets/tab-icon-removebg-preview.png" type="image/png">
+</head>
+<body>
+    <audio id="backgroundMusic" loop>
+        <source src="/poke/assets/driftveil-city.mp3" type="audio/mp3">
+        Your browser does not support the audio tag.
+    </audio>
+
+    <!-- Play/Pause button -->
+    <button id="musicControlBtn" onclick="toggleMusic()" style="position: fixed; top: 10px; right: 10px; z-index: 999;">
+        <i id="musicIcon" class="fa-solid fa-volume-up"></i>
+    </button>
+
+    <img class="bg" src="/poke/assets/pokestarters1.jpg" alt="poke">
+    <div class="greeting-container">
+        <h2 class="greeting-text">Greetings, <br> <span id="userName"></span>! <br> Choose your Pokemon.</h2>
+      </div>
+    <div class="container">
+        
+        <div id="slide">
+            <div class="item" style="background-image: url(/poke/assets/bgtobulb.png);">
+                <img src="/poke/assets/bsaur.gif" alt="" class="overlay-bulb">
+                <div class="content">
+                    <div class="name">BULBASAUR</div>
+                    <div class="des">A strange seed was planted on its back at birth. Thus, a plant 
+                        sprouted and now grows with this Pokemon.
+                    </div>
+                    <button class="butts1"><a href="#popup1">See more</a></button>
+                </div>
+            </div>
+            <div class="item" style="background-image: url(/poke/assets/charm.gif);">
+                <div class="content">
+                    <div class="name">CHARMANDER</div>
+                    <div class="des">From the day it is born, a flame burns at the tip of its tail. Its life would end if the flame were to go out.</div>
+                    <button class="butts2"><a href="#popup2">See more</a></button>
+                </div>
+            </div>
+            <div class="item" style="background-image: url(/poke/assets/frok.gif);">
+                <div class="content">
+                    <div class="name">FROAKIE</div>
+                    <div class="des">It protects its skin by covering its body in delicate bubbles. Beneath its
+                        happy-go-lucky air, it keeps a watchful eye on its surroundings. </div>
+                    <button class="butts3"><a href="#popup3">See more</a></button>
+                </div>
+            </div>
+            <div class="item" style="background-image: url(/poke/assets/bgtolitten.gif);">
+                <img src="/poke/assets/litten-ii.gif" alt="" class="overlay">
+                <div class="content">
+                    <div class="name">LITTEN</div>
+                    <div class="des">Litten produces fire by using their hairballs.
+                        Littens tend to not show emotions on the outside.
+                    </div>
+                    <button class="butts4"><a href="#popup4">See more</a></button>
+                </div>
+            </div>
+            <div class="item" style="background-image: url(/poke/assets/bgtopika.gif);">
+                <img src="/poke/assets/pikagif-unscreen.gif" alt="" class="overlay-pika">
+                <div class="content">
+                    <div class="name">PIKACHU</div>
+                    <div class="des">Pikachu that can generate powerful electricity have cheeks
+                        sacs that are extra soft and super stretchy.
+                    </div>
+                    <button class="butts5"><a href="#popup5">See more</a></button>
+                </div>
+            </div>
+            <div class="item" style="background-image: url(/poke/assets/pippplop.gif);">
+                <div class="content">
+                    <div class="name">PIPLUP</div>
+                    <div class="des">Because it is very proud, it hates accepting food from people. Its
+                        thick down guards it from cold.
+                    </div>
+                    <button class="butts6"><a href="#popup6">See more</a></button>
+                </div>
+            </div>
+            <div class="item" style="background-image: url(/poke/assets/bgtosniv.jpg);">
+                <img src="/poke/assets/snivvvv.gif" alt="" class="overlay-snivy">
+                <div class="content">
+                    <div class="name">SNIVY</div>
+                    <div class="des">It is very intelligent and calm. Being exposed to lots of sunlight makes its movements swifter.</div>
+                    <button class="butts7"><a href="#popup7">See more</a></button>
+                </div>
+            </div>
+            <div class="item" style="background-image: url(/poke/assets/squirty.gif);">
+                <div class="content">
+                    <div class="name">SQUIRTLE</div>
+                    <div class="des">When it feels threatened, it draws its limb inside its shell and sprays water from its mouth.</div>
+                    <button class="butts8"><a href="#popup8">See more</a></button>
+                </div>
+            </div>
+            <div class="item" style="background-image: url(/poke/assets/bgtocynd.webp);">
+                <img src="/poke/assets/cynddd.gif" alt="" class="overlay-cynd">
+                <div class="content">
+                    <div class="name">CYNDAQUIL</div>
+                    <div class="des">It usually stays hunched over. If it is angry or surprised, it shoots flames out of its back.</div>
+                    <button class="butts9"><a href="#popup9">See more</a></button>
+                </div>
+            </div>
+            <div class="item" style="background-image: url(/poke/assets/torchiccc.gif);">
+                
+                <div class="content">
+                    <div class="name">TORCHIC</div>
+                    <div class="des">It has a flame sac inside its belly that perpetually burns. It feels warm if it is hugged.</div>
+                    <button class="butts10"><a href="#popup10">See more</a></button>
+                </div>
+            </div>
+        </div>
+        <div class="buttons">
+            <button id="prev"><i class="fa-solid fa-angle-left"></i></button>
+            <button class="choose-btn" onclick="choosePokemon()">Choose</button>
+            <button id="next"><i class="fa-solid fa-angle-right"></i></button>
+            
+        </div>
+    </div>
+
+    
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+        // Create an audio element
+        var audio = new Audio("/poke/assets/driftveil-city.mp3");
+        audio.loop = true; // Set to true for continuous looping
+
+        // Play the audio
+        audio.play();
+
+        // Set the icon to 'volume-up'
+        document.getElementById('musicIcon').className = 'fa-solid fa-volume-up';
+        
+        // Save the audio element in a global variable for later control
+        window.backgroundMusic = audio;
+    });
+
+    function toggleMusic() {
+        var audio = window.backgroundMusic;
+
+        if (audio.paused) {
+            audio.play();
+            document.getElementById('musicIcon').className = 'fa-solid fa-volume-up';
+        } else {
+            audio.pause();
+            document.getElementById('musicIcon').className = 'fa-solid fa-volume-off';
+        }
+    }
+
+        document.addEventListener("DOMContentLoaded", function() {
+          var userName = localStorage.getItem("userName");
+          var userNameElement = document.getElementById("userName");
+    
+          if (userName) {
+            userNameElement.textContent = userName;
+          }
+        });
+
+        function goBack() {
+             window.history.back();
+        }
+
+        document.getElementById('next').onclick = function(){
+        let lists = document.querySelectorAll('.item');
+        document.getElementById('slide').appendChild(lists[0]);
+        }
+        document.getElementById('prev').onclick = function(){
+        let lists = document.querySelectorAll('.item');
+        document.getElementById('slide').prepend(lists[lists.length - 1]);
+        }
+
+        function choosePokemon() {
+        // Navigate to lastscene.html without passing a Pokemon name
+        window.location.href = "lastscene.html";
+        }
+
+        // Attach click event handlers to "Choose" buttons
+        document.querySelectorAll('.choose-btn').forEach(function(button) {
+        button.onclick = choosePokemon;
+        });
+
+        
+         
+    </script>
+    
+    <button class="back-btn" onclick="goBack()">Go back</button>
+
+    <div id="popup1" class="popup">
+    <span class="close" onclick="location.href='#'">&times;</span>
+    
+    <div class="popup-content">
+        <!-- Image Container 1 -->
+        <div class="image-container">
+            <div class="image-content">
+            <img src="/poke/assets/bsaur.gif" alt="Pop-up Image 1" class="popup-image">
+            </div>
+            <div class="description-content">
+            <div class="image-description">Bulbasaur<br>Generation: 1 <br>Type: Grass--Poison <br>Bulbasaur is a small, mainly turquoise amphibian Pokémon with red eyes and a green bulb on its back.</div>
+            </div>
+        </div>
+        
+        <!-- Image Container 2 -->
+        <div class="image-container">
+            <div class="image-content">
+            <img src="/poke/assets/Ivysaur.gif" alt="Pop-up Image 2" class="popup-image">
+            </div>
+            <div class="description-content">
+            <div class="image-description">Ivysaur<br>Generation: 1 <br>Type: Grass--Poison <br>To support its bulb, IVYSAUR’s legs grow sturdy. If it spends more time lying in the sunlight, the bud will soon bloom into a large flower.</div>
+            </div>
+        </div>
+        
+        <!-- Image Container 3 -->
+        <div class="image-container">
+            <div class="image-content">
+            <img src="/poke/assets/venusaur.gif" alt="Pop-up Image 3" class="popup-image">
+            </div>
+            <div class="description-content">
+            <div class="image-description">Venusaur <br>Generation: 1 <br>Type: Grass--Poison
+                1 VENUSAUR’s flower is said to take on vivid colors if it gets plenty of nutrition and sunlight. The flower’s aroma soothes the emotions of people.</div>
+            </div>
+        </div>
+        
+        <!-- Add more image-container divs for additional images -->
+        
+    </div>
+    </div>
+    <div id="popup2" class="popup">
+        <span class="close" onclick="location.href='#'">&times;</span>
+        <div class="popup-content">
+            <!-- Image Container 1 -->
+            <div class="image-container">
+                <div class="image-content">
+                <img src="/poke/assets/charmevoline.gif" alt="Pop-up Image 1" class="popup-image">
+                </div>
+                <div class="description-content">
+                <div class="image-description">Charmander<br>Generation: 1 <br>Type: Fire <br>Charmander is a bipedal, reptilian Pokémon. Most of its body is colored orange, while its underbelly is light yellow and it has blue eyes. It has a flame at the end of its tail, 
+                    which is said to signify its health.</div>
+                </div>
+            </div>
+            
+            <!-- Image Container 2 -->
+            <div class="image-container">
+                <div class="image-content">
+                <img src="/poke/assets/charmeleonevoline.gif" alt="Pop-up Image 1" class="popup-image">
+                </div>
+                <div class="description-content">
+                    <div class="image-description">Charmeleon <br>Generation: 1 <br>Type: Fire <br>Without pity, its sharp claws destroy foes. If it encounters a strong enemy, it becomes agitated, 
+                        and the flame on its tail flares with a bluish white color.</div>
+                </div>
+            </div>
+            
+        
+            <!-- Image Container 3 -->
+            <div class="image-container">
+                <div class="image-content">
+                <img src="/poke/assets/charizard.gif" alt="Pop-up Image 1" class="popup-image">
+                </div>
+                <div class="description-content">
+                    <div class="image-description">Charizardd <br>Generation: 1 <br>Type: Fire <br>Charizard is a large dragon-like Pokémon, mainly orange in color. It has two large wings, the underside of which are turquoise. Like Charmander and Charmeleon, 
+                        it has a flame at the end of its tail.</div>
+                </div>
+            </div>
+            
+            <!-- Add more image-container divs for additional images -->
+            
+        </div>
+    </div>
+    <div id="popup3" class="popup">
+        <span class="close" onclick="location.href='#'">&times;</span>
+        <div class="popup-content">
+            <!-- Image Container 1 -->
+            <div class="image-container">
+                <div class="image-content">
+                <img src="/poke/assets/froakie.gif" alt="Pop-up Image 1" class="popup-image">
+                </div>
+                <div class="description-content">
+                <div class="image-description">Froakie<br>Generation: 6 
+                    <br>Type: Water <br>Froakie is both light and strong, 
+                    making it capable of jumping incredibly high. 
+                    The bubbles on its chest and back protect it from attacks. 
+                    Froakie may appear absentminded, 
+                    but in truth it pays close attention to its surroundings at all times.</div>
+                </div>
+            </div>
+            
+            <!-- Image Container 2 -->
+            <div class="image-container">
+                <div class="image-content">
+                <img src="/poke/assets/frogggg.gif" alt="Pop-up Image 2" class="popup-image">
+                </div>
+                <div class="description-content">
+                    <div class="image-description">Frogadier  <br>Generation: 6 <br>Type: Water <br>During battle, 
+                        Frogadier confounds its opponents by leaping about the ceiling or into trees. 
+                        Its jumping skill improves greatly.</div>
+                </div>
+            </div>
+            
+        
+            <!-- Image Container 3 -->
+            <div class="image-container">
+                <div class="image-content">
+                <img src="/poke/assets/grenn.gif" alt="Pop-up Image 3" class="popup-image">
+                </div>
+                <div class="description-content">
+                    <div class="image-description">Greninja  <br>Generation: 6 <br>Type: Water <br>It appears and vanishes with a ninja’s grace. 
+                        It toys with its enemies using swift movements, 
+                        while slicing them with throwing stars of sharpest water.</div>
+                </div>
+            </div>
+            
+            <!-- Add more image-container divs for additional images -->
+            
+        </div>
+    </div>
+    <div id="popup4" class="popup">
+        <span class="close" onclick="location.href='#'">&times;</span>
+        <div class="popup-content">
+            <!-- Image Container 1 -->
+            <div class="image-container">
+                <div class="image-content">
+                <img src="/poke/assets/littenline.gif" alt="Pop-up Image 1" class="popup-image">
+                </div>
+                <div class="description-content">
+                <div class="image-description">Litten <br>Generation: 7 
+                    <br>Type: Fire <br>The cool-headed Fire Cat Pokémon, 
+                    Litten, is the next choice for a first-partner Pokémon. 
+                    Litten's fur is rich in oils and is immensely flammable. 
+                    It constantly grooms itself by licking its coat, collecting loose fur into balls. 
+                    It then ignites these hairballs to create fireball attacks. When the time comes for Litten to molt, 
+                    it burns off all of its fur in one glorious blaze.</div>
+                </div>
+            </div>
+            
+            <!-- Image Container 2 -->
+            <div class="image-container">
+                <div class="image-content">
+                <img src="/poke/assets/torrracat.webp" alt="Pop-up Image 2" class="popup-image">
+                </div>
+                <div class="description-content">
+                    <div class="image-description">Torracat   <br>Generation: 7 <br>Type: Fire <br>This Pokémon has a violent, selfish disposition. 
+                        If it’s not in the mood to listen, 
+                        it will ignore its Trainer’s orders with complete nonchalance.</div>
+                </div>
+            </div>
+            
+        
+            <!-- Image Container 3 -->
+            <div class="image-container">
+                <div class="image-content">
+                <img src="/poke/assets/incineroar.webp" alt="Pop-up Image 3" class="popup-image">
+                </div>
+                <div class="description-content">
+                    <div class="image-description">Incineroar   <br>Generation: 7 <br>Type: Fire <br>It appears and vanishes with a ninja’s grace. 
+                        It toys with its enemies using swift movements, 
+                        while slicing them with throwing stars of sharpest water.</div>
+                </div>
+            </div>
+            
+            <!-- Add more image-container divs for additional images -->
+            
+        </div>
+    </div>
+    <div id="popup5" class="popup">
+        <span class="close" onclick="location.href='#'">&times;</span>
+        <div class="popup-content">
+            <!-- Image Container 1 -->
+            <div class="image-container">
+                <div class="image-content">
+                <img src="/poke/assets/pichi.gif" alt="Pop-up Image 1" class="popup-image">
+                </div>
+                <div class="description-content">
+                <div class="image-description">Pichu <br>Generation: 2
+                    <br>Type: Electric <br>It is still inept at retaining electricity.
+                    When it is startled, it discharges power accidentally.
+                    It gets better at holding power as it grows older.</div>
+                </div>
+            </div>
+            
+            <!-- Image Container 2 -->
+            <div class="image-container">
+                <div class="image-content">
+                <img src="/poke/assets/pikachu--.webp" alt="Pop-up Image 2" class="popup-image">
+                </div>
+                <div class="description-content">
+                    <div class="image-description">Pikachu    <br>Generation: 1 <br>Type: Electric <br>This Pokémon has a violent, selfish disposition. 
+                        If it’s not in the mood to listen, 
+                        it will ignore its Trainer’s orders with complete nonchalance.</div>
+                </div>
+            </div>
+            
+        
+            <!-- Image Container 3 -->
+            <div class="image-container">
+                <div class="image-content">
+                <img src="/poke/assets/raichu.webp" alt="Pop-up Image 3" class="popup-image">
+                </div>
+                <div class="description-content">
+                    <div class="image-description">Raichu    <br>Generation: 1 <br>Type: Electric <br>If it stores too much electricity, its behavior turns aggressive. 
+                        To avoid this, it occasionally discharges excess energy and calms itself down.</div>
+                </div>
+            </div>
+            
+            <!-- Add more image-container divs for additional images -->
+            
+        </div>
+    </div>
+    <div id="popup6" class="popup">
+        <span class="close" onclick="location.href='#'">&times;</span>
+        <div class="popup-content">
+            <!-- Image Container 1 -->
+            <div class="image-container">
+                <div class="image-content">
+                <img src="/poke/assets/piplup.gif" alt="Pop-up Image 1" class="popup-image">
+                </div>
+                <div class="description-content">
+                <div class="image-description">Piplup  <br>Generation: 4
+                    <br>Type: Water <br>Prefers cold climes and appears along coasts. 
+                    It’s an adorable little thing—as cute as any child—but it’s also prideful, 
+                    unwilling to accept handouts from people.</div>
+                </div>
+            </div>
+            
+            <!-- Image Container 2 -->
+            <div class="image-container">
+                <div class="image-content">
+                <img src="/poke/assets/priplup.webp" alt="Pop-up Image 2" class="popup-image">
+                </div>
+                <div class="description-content">
+                    <div class="image-description">Prinplup<br>Generation: 4 <br>Type: Water <br>It swims gracefully through the frigid sea and sings with a voice like the roaring tide. 
+                        It has powerful, sturdy wings and dignity to match.</div>
+                </div>
+            </div>
+            
+        
+            <!-- Image Container 3 -->
+            <div class="image-container">
+                <div class="image-content">
+                <img src="/poke/assets/empoleon.webp" alt="Pop-up Image 3" class="popup-image">
+                </div>
+                <div class="description-content">
+                    <div class="image-description">Empoleon  <br>Generation: 4 <br>Type: Water <br>Since ancient times, 
+                        it has been revered by the people of Hisui, who call it the Master of the Waves. 
+                        Its wings are a match for even master-crafted blades.</div>
+                </div>
+            </div>
+            
+            <!-- Add more image-container divs for additional images -->
+            
+        </div>
+    </div>
+    <div id="popup7" class="popup">
+        <span class="close" onclick="location.href='#'">&times;</span>
+        <div class="popup-content">
+            <!-- Image Container 1 -->
+            <div class="image-container">
+                <div class="image-content">
+                <img src="/poke/assets/snivvyyy.gif" alt="Pop-up Image 1" class="popup-image">
+                </div>
+                <div class="description-content">
+                <div class="image-description">Snivy   <br>Generation: 5
+                    <br>Type: Grass <br>	They photosynthesize by bathing their tails in sunlight.
+                    When they are not feeling well, their tails droop.</div>
+                </div>
+            </div>
+            
+            <!-- Image Container 2 -->
+            <div class="image-container">
+                <div class="image-content">
+                <img src="/poke/assets/servine.gif" alt="Pop-up Image 2" class="popup-image">
+                </div>
+                <div class="description-content">
+                    <div class="image-description">Servine    <br>Generation: 5
+                        <br>Type: Grass <br>They avoid attacks by sinking into the shadows of thick foliage.
+                        They retaliate with masterful whipping techniques.</div>
+                    </div>
+            </div>
+            
+        
+            <!-- Image Container 3 -->
+            <div class="image-container">
+                <div class="image-content">
+                <img src="/poke/assets/serperior.gif" alt="Pop-up Image 3" class="popup-image">
+                </div>
+                <div class="description-content">
+                    <div class="image-description">Serperior    <br>Generation: 5
+                        <br>Type: Grass <br>They raise their heads to intimidate opponents but only give it their all when fighting a powerful opponent.</div>
+                    </div>
+            </div>
+            
+            <!-- Add more image-container divs for additional images -->
+            
+        </div>
+    </div>
+    <div id="popup8" class="popup">
+        <span class="close" onclick="location.href='#'">&times;</span>
+        <div class="popup-content">
+            <!-- Image Container 1 -->
+            <div class="image-container">
+                <div class="image-content">
+                <img src="/poke/assets/squirt-evoline.gif" alt="Pop-up Image 1" class="popup-image">
+                </div>
+                <div class="description-content">
+                <div class="image-description">Squirtle   <br>Generation: 1
+                    <br>Type: Water <br>Squirtle is a bipedal, reptilian Pokémon. 
+                    It has a blue body with purple eyes, a light brown belly, 
+                    and a tough red-brown shell on its back. 
+                    It has a long tail that curls into a spiral.</div>
+                </div>
+            </div>
+            
+            <!-- Image Container 2 -->
+            <div class="image-container">
+                <div class="image-content">
+                <img src="/poke/assets/wartortle.gif" alt="Pop-up Image 2" class="popup-image">
+                </div>
+                <div class="description-content">
+                    <div class="image-description">Wartortle    <br>Generation: 1
+                        <br>Type: Water <br>Its large tail is covered with rich,
+                        thick fur that deepens in color with age.
+                        The scratches on its shell are evidence of this POKéMON’s toughness in battle.</div>
+                    </div>
+            </div>
+            
+        
+            <!-- Image Container 3 -->
+            <div class="image-container">
+                <div class="image-content">
+                <img src="/poke/assets/blastoise.gif" alt="Pop-up Image 3" class="popup-image">
+                </div>
+                <div class="description-content">
+                    <div class="image-description">Blastoise    <br>Generation: 1
+                        <br>Type: Water <br>Blastoise is a large, bipedal, reptilian Pokémon.
+                        It has a blue body with small purple eyes, a light brown belly, and a stubby tail.
+                        It has a large brown shell with two powerful water cannons on either side,
+                        which can be withdrawn.</div>
+                    </div>
+            </div>
+            
+            <!-- Add more image-container divs for additional images -->
+            
+        </div>
+    </div>
+    <div id="popup9" class="popup">
+        <span class="close" onclick="location.href='#'">&times;</span>
+        <div class="popup-content">
+            <!-- Image Container 1 -->
+            <div class="image-container">
+                <div class="image-content">
+                <img src="/poke/assets/cynd-evo-linenobg.gif" alt="Pop-up Image 1" class="popup-image">
+                </div>
+                <div class="description-content">
+                <div class="image-description">Cyndaquil    <br>Generation: 2
+                    <br>Type: Fire <br>	It flares flames from its back to protect itself. 
+                    The fire burns vigorously if the POKéMON is angry.
+                    When it is tired, it sputters with incomplete combustion.</div>
+                </div>
+            </div>
+            
+            <!-- Image Container 2 -->
+            <div class="image-container">
+                <div class="image-content">
+                <img src="/poke/assets/quilava.gif" alt="Pop-up Image 2" class="popup-image">
+                </div>
+                <div class="description-content">
+                    <div class="image-description">Quilava     <br>Generation: 2
+                        <br>Type: Fire <br>It intimidates foes with intense gusts of flames and superheated air.
+                        Its quick nimbleness lets it dodge attacks even while scorching an enemy.</div>
+                    </div>
+            </div>
+            
+        
+            <!-- Image Container 3 -->
+            <div class="image-container">
+                <div class="image-content">
+                <img src="/poke/assets/typhlosion.gif" alt="Pop-up Image 3" class="popup-image">
+                </div>
+                <div class="description-content">
+                    <div class="image-description">Typhlosion     <br>Generation: 2
+                        <br>Type: Fire <br>It can hide behind a shimmering heat haze that it creates using its intense flames. 
+                        TYPHLOSION create blazing explosive blasts that burn everything to cinders.</div>
+                    </div>
+            </div>
+            
+            <!-- Add more image-container divs for additional images -->
+            
+        </div>
+    </div>
+    <div id="popup10" class="popup">
+    <span class="close" onclick="location.href='#'">&times;</span>
+    <div class="popup-content">
+        <!-- Image Container 1 -->
+        <div class="image-container">
+            <div class="image-content">
+              <img src="/poke/assets/torchic-evoline.gif" alt="Pop-up Image 1" class="popup-image">
+            </div>
+            <div class="description-content">
+              <div class="image-description">Torchic     <br>Generation: 3
+                <br>Type: Fire <br>If attacked, it strikes back by spitting balls of fire it forms in its stomach.
+                 A TORCHIC dislikes darkness because it can’t see its surroundings.</div>
+            </div>
+          </div>
+        
+        <!-- Image Container 2 -->
+        <div class="image-container">
+            <div class="image-content">
+              <img src="/poke/assets/combusken.gif" alt="Pop-up Image 2" class="popup-image">
+            </div>
+            <div class="description-content">
+                <div class="image-description">Combusken      <br>Generation: 3
+                    <br>Type: Fire <br>Combusken battles with the intensely hot flames it spews from its beak and with outstandingly destructive kicks. 
+                    This Pokémon’s cry is very loud and distracting.</div>
+                </div>
+          </div>
+        
+       
+        <!-- Image Container 3 -->
+        <div class="image-container">
+            <div class="image-content">
+              <img src="/poke/assets/blaziken.gif" alt="Pop-up Image 3" class="popup-image">
+            </div>
+            <div class="description-content">
+                <div class="image-description">Blaziken      <br>Generation: 2
+                    <br>Type: Fire <br>It learns martial arts that use punches and kicks. 
+                    Every several years, its old feathers burn off, 
+                    and new, supple feathers grow back in their place.</div>
+                </div>
+          </div>
+        
+        <!-- Add more image-container divs for additional images -->
+        
+      </div>
+    </div>
+
+</body>
+</html>
+  

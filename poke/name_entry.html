@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokemonyak</title>
+
+    <style>
+        @font-face {
+            font-family: 'Upheaval';
+            src: url('upheavtt.woff2') format('woff2');
+        }
+        body {
+            font-family: 'Upheaval', sans-serif;
+            margin: 0;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #F2F2F2; /* Set background color */
+            opacity: 0; /* Initial opacity set to 0 */
+            transition: opacity 1s ease; /* Add transition property */
+        }
+
+        .nameInput {
+            font-size: 24px;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+
+        .submitButton {
+            background-color: rgb(222, 85, 78);
+            color: rgb(9, 9, 9);
+            padding: 10px 20px;
+            font-family: 'Upheaval', sans-serif;
+            font-size: 20px;
+            border: 0px;
+            cursor: pointer;
+            border-radius: 5px;
+
+            box-shadow: 
+                inset -4px 2px 1px 1px grey,
+                inset -4px 1px 1px 1px lightgray,
+                inset 4px -2px 1px 1px lightgray;
+        }
+
+        .fadeIn {
+            opacity: 1; /* Set opacity to 1 for the fade-in effect */
+        }
+
+        .fadeOut {
+            opacity: 0; /* Set opacity to 0 for the fade-out effect */
+        }
+        .grassBg {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            z-index: -1;
+            transform: translateX(-50%) translateY(-50%);
+        }
+        .enterName {
+          font-family: 'Upheaval', sans-serif;
+          color: #abebf5;
+          
+        }
+        .submitButton:hover {
+            cursor: pointer;
+            background-color: #d12b06;
+        }
+        
+        
+    </style>
+</head>
+<body class="fadeIn">
+
+
+  <img class= "grassBg" src="assets/gamefreak_intro.gif" alt="gif">
+  
+    <h1 class="enterName">Enter Your Name</h1>
+    
+
+    <input type="text" class="nameInput" placeholder="Your Name" id="userName">
+    
+    <button class="submitButton" onclick="showGreetings()">Submit</button>
+
+    <script>
+        function showGreetings() {
+            var userName = document.getElementById("userName").value;
+            if (userName.trim() !== "") {
+                localStorage.setItem("userName", userName);
+                document.body.classList.add("fadeOut"); /* Add the fade-out class */
+                setTimeout(function() {
+                    window.location.href = "greetings.html";
+                }, 1000);
+            }
+        }
+        function goBack() {
+        window.history.back();
+    }
+
+    
+    </script>
+  <button onclick="goBack()">Go back</button>
+</body>
+</html>
